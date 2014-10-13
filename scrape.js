@@ -54,8 +54,11 @@ request.post({ url: url, form: form }, function (error, request, body) {
             }
             j++;
         })
-        results[i] = obj;
-        i++;
+        // Ignore non-course table entries
+        if(Object.keys(obj).length != 0) {
+            results[i] = obj;
+            i++;
+        }
         //console.log($(this).text())
     })
     console.log(results);
