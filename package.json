@@ -1,0 +1,17 @@
+{
+  "name": "better-tms",
+  "version": "0.0.0",
+  "description": "A parser/scraper/API thing for Drexel's WebTMS",
+  "main": "scrape.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashaindlin/better-tms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ashaindlin/better-tms/issues"
+  },
+  "homepage": "https://github.com/ashaindlin/better-tms",
+  "dependencies": {
+    "cheerio": "^0.17.0"
+  }
+}
