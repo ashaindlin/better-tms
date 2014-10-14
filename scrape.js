@@ -2,21 +2,26 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 var url = 'https://duapp2.drexel.edu/webtms_du/app'
-var form = { formids: "term,courseName,crseNumb,crn",
-             component: "searchForm",
-             page: "Home",
-             service: "direct",
-             submitmode: "submit",
-             submitname: "",
-             term: "1",
-             courseName: "Calculus",
-             crseNumb: "122",
-             crn: ""
+
+function buildForm(term, courseName, courseNumber) {
+    return {
+        formids: "term,courseName,crseNumb,crn",
+        component: "searchForm",
+        page: "Home",
+        service: "direct",
+        submitmode: "submit",
+        submitname: "",
+        term: term,
+        courseName: courseName,
+        crseNumb: courseNumber,
+        crn: ""
+    }
 }
 
+var formByNumber = buildForm("1", "", "122");
+var formByName = buildForm("1", "Calculus", "");
 
-
-request.post({ url: url, form: form }, function (error, request, body) {
+request.post({ url: url, form: formByNumber }, function (error, request, body) {
     //console.log(body);
     $ = cheerio.load(body);
     var results = {};
