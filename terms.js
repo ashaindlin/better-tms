@@ -1,8 +1,7 @@
-var request = require('request'),
-    cheerio = require('cheerio');
+var request = require('request');
+var cheerio = require('cheerio');
 
-// TODO send a JSON HTTP response instead of logging result to console
-module.exports.getTerms = function() {
+module.exports.list = function(req, res) {
     var url = 'https://duapp2.drexel.edu/webtms_du/app';
     request(url, function(error, request, body) {
         $ = cheerio.load(body);
@@ -15,6 +14,7 @@ module.exports.getTerms = function() {
             terms[value] = data;
         });
         delete terms['0']; // remove 'Select a Term' default option
-        console.log(terms);
+        res.set('Content-Type', 'application/json');
+        res.send(terms);
     });
 };
