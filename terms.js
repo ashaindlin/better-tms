@@ -1,8 +1,8 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var url = require('./form').url;
 
 module.exports.list = function(req, res) {
-    var url = 'https://duapp2.drexel.edu/webtms_du/app';
     request(url, function(error, request, body) {
         $ = cheerio.load(body);
         var children = $('select#term').children();
