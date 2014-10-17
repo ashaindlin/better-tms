@@ -81,6 +81,6 @@ GET /courses?number=122&term=6
   the URL to which to send it is all stored here.
 - package.json: The usual (dependencies, version number, etc).
 - README.md: This file.
-- scrape.js: Most of the application logic, including the all-important
+- courses.js: Most of the application logic, including the all-important
   `getCourses` function.
 - terms.js: Get the list of all terms, indexed by number.

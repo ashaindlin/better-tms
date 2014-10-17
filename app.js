@@ -1,5 +1,5 @@
 var express = require('express');
-var courses = require('./scrape');
+var courses = require('./courses');
 var terms = require('./terms');
 
 var app = express();
