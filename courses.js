@@ -5,19 +5,20 @@ var form = require('./form');
 module.exports.getCourses = function(req, res) {
     if(!req.query.term) {
         res.status(400).send('Bad request: query must include a term');
-    } else if(!req.query.name && !req.query.number) {
-        res.status(400).send('Bad request: query must include a course name ' +
-                'or course number.');
+    } else if(!req.query.name && !req.query.number && !req.query.crn) {
+        res.status(400).send('Bad request: query must include a course name, ' +
+                'course number, or CRN.');
     } else {
         var url = form.url;
         var name = req.query.name || '';
         var number = req.query.number || '';
-        var formdata = form.buildForm(req.query.term, name, number);
+        var crn = req.query.crn || '';
+        var formdata = form.buildForm(req.query.term, name, number, crn);
         request.post({ url: url, form: formdata }, function (error, request, body) {
             $ = cheerio.load(body);
             var results = {};
-            var crn = 0;
             var i = 0;
+            console.log("New request");
             $(".even, .odd").each(function() {
                 var obj = {};
                 var j = 0;
@@ -37,7 +38,6 @@ module.exports.getCourses = function(req, res) {
                             break;
                         case 4:
                             obj['crn'] = $(this).text();
-                            crn = $(this).text();
                             break;
                         case 5:
                             obj['coursetitle'] = $(this).text();

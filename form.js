@@ -1,6 +1,6 @@
 module.exports.url = 'https://duapp2.drexel.edu/webtms_du/app';
 
-module.exports.buildForm = function(term, courseName, courseNumber) {
+module.exports.buildForm = function(term, courseName, courseNumber, crn) {
     return {
         formids: "term,courseName,crseNumb,crn",
             component: "searchForm",
@@ -11,6 +11,6 @@ module.exports.buildForm = function(term, courseName, courseNumber) {
             term: term,
             courseName: courseName,
             crseNumb: courseNumber,
-            crn: ""
+            crn: crn
     }
 }
