@@ -36,10 +36,10 @@ starting at 0.
 
 The query string to courses must include `term` (an index from the data
 returned by the `/terms` route) and one of the following: `name` (a string to
-search for in course names), `number` (a number to match exactly).
+search for in course names), `number` (a number to match exactly), or `crn` (a
+CRN to match exactly).
 
-In the future, you will be able to search by CRN or search for all classes
-offered in a term.
+In the future, you will be able to search for all classes offered in a term.
 
 ```
 GET /courses?name=applied&term=3
@@ -70,6 +70,21 @@ GET /courses?number=122&term=6
         "instructor": "Huilan Li"
     },
     ...
+}
+```
+
+```
+GET /courses?crn=13622&term=1
+{
+    "0": {
+        "subjectcode": "DSMR",
+        "coursenumber": "100",
+        "instrtype": "Lecture",
+        "section": "001",
+        "crn": "13622",
+        "coursetitle": "Computer Imaging I",
+        "instructor": "Diane Susan Zatz"
+    }
 }
 ```
 
