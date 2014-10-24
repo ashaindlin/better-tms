@@ -2,6 +2,7 @@
   "name": "better-tms",
   "version": "0.0.0",
   "description": "A parser/scraper/API thing for Drexel's WebTMS",
+  "license": "WTFPL",
   "main": "app.js",
   "repository": {
     "type": "git",
