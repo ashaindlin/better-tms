@@ -2,6 +2,8 @@
 
 A parser/scraper/API thing for Drexel's WebTMS
 
+**No longer being worked on/actively maintained.**
+
 # getting started
 
 1. clone the repo
