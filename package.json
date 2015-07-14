@@ -1,6 +1,6 @@
 {
   "name": "better-tms",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A parser/scraper/API thing for Drexel's WebTMS",
   "license": "WTFPL",
   "main": "app.js",
@@ -13,8 +13,8 @@
   },
   "homepage": "https://github.com/ashaindlin/better-tms",
   "dependencies": {
-    "cheerio": "^0.17.0",
-    "express": "^4.9.7",
-    "request": "^2.45.0"
+    "cheerio": "latest",
+    "express": "latest",
+    "request": "latest"
   }
 }

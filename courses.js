@@ -20,7 +20,7 @@ module.exports.getCourses = function(req, res) {
             var i = 0;
             console.log("New request");
             $(".even, .odd").each(function() {
-                var obj = {};
+	            var obj = {};
                 var j = 0;
                 $(this).find('td [valign=top]').each(function() {
                     switch (j) {
@@ -43,13 +43,59 @@ module.exports.getCourses = function(req, res) {
                             obj['coursetitle'] = $(this).text();
                             break;
                         case 6:
-                            obj['instructor'] = $(this).text();
+                            obj['instructor'] = $(this).text().replace("  ", " ");
                             break;
                         default:
                             break;
                     }
                     j++;
                 })
+                if("subjectcode" in obj)
+                {
+	                var k = 0;
+	                $(this).find('td [colspan="2"]').each(function() {
+		                $(this).find('table').each(function(){
+			                $(this).find('tr').each(function(){
+				                $(this).find('td').each(function(){
+					                switch (k) {
+				                        case 0:
+				                            obj['meetingday'] = [$(this).text()];
+				                            break;
+				                        case 1:
+				                            obj['meetingtime'] = [$(this).text()];
+				                            break;
+				                        case 2:
+				                        	if($(this).next().text().indexOf("Final Exam:") > -1)
+				                        	{
+					                        	obj['finalday'] = $(this).text();
+				                        	}
+				                        	else
+				                        	{
+					                        	obj['meetingday'].push($(this).text());
+				                        	}
+				                        	break;
+				                        case 3:
+				                        	if($(this).text().indexOf("Final Exam:") > -1)
+				                        	{
+					                        	obj['finaltime'] = $(this).text().replace("Final Exam:", "");
+				                        	}
+				                        	else
+				                        	{
+					                        	obj['meetingtime'].push($(this).text());
+				                        	}
+				                        	break;
+				                        default:
+				                            break;
+				                    }
+				                    k++;
+								
+								})
+			                })
+		                })
+	                })
+                }
+                  
+                
                 // Ignore non-course table entries
                 if(Object.keys(obj).length != 0) {
                     results[i] = obj;
