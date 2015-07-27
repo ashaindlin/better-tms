@@ -24,7 +24,7 @@ module.exports.getCourses = function(req, res) {
                 var j = 0;
                 if (crn == '')
                 {
-	                $(this).find('td [valign=top]').each(function() {
+	                $(this).find('td[valign="center"], td[valign=top]').each(function() {
 	                    switch (j) {
 	                        case 0:
 	                            obj['subjectcode'] = $(this).text();
@@ -45,6 +45,7 @@ module.exports.getCourses = function(req, res) {
 	                            obj['coursetitle'] = $(this).text();
 	                            break;
 	                        case 6:
+                                console.log($(this).text());
 	                            obj['instructor'] = $(this).text().replace("  ", " ");
 	                            break;
 	                        default:
@@ -84,7 +85,7 @@ module.exports.getCourses = function(req, res) {
 	                    j++;
                 	})
                 }
-                
+
                 if("subjectcode" in obj)
                 {
 	                var k = 0;
@@ -123,14 +124,14 @@ module.exports.getCourses = function(req, res) {
 				                            break;
 				                    }
 				                    k++;
-								
+
 								})
 			                })
 		                })
 	                })
                 }
-                  
-                
+
+
                 // Ignore non-course table entries
                 if(Object.keys(obj).length != 0) {
                     results[i] = obj;
